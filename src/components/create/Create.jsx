@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector /*, useDispatch */ } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import styles from "./styles/create.module.css";
 import styleButton from "../globalStyles/buttonsStyle.module.css";
@@ -7,7 +7,7 @@ import styleButton from "../globalStyles/buttonsStyle.module.css";
 import TypeSelection from "./components/TypeSelection";
 import NameAndImageInput from "./components/NameAndImageInput";
 import NavBar from "../globalComponent/navBar";
-// import { getPokemon } from "../../redux/actions";
+import { getPokemon } from "../../redux/actions";
 import Stats from "./components/Stats";
 import WeightAndHeight from "./components/WeightAndHeight";
 
@@ -24,7 +24,7 @@ let pokemonDefault = {
 };
 
 export default function Create() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [pokemon, setPokemon] = useState(pokemonDefault);
   const [err, setErr] = useState({ errName: "", errImage: "" });
   const allPokemons = useSelector((state) => state.filteredPokemons);
@@ -33,11 +33,11 @@ export default function Create() {
   // Validacion para formato de imagenes
   let imageTypes = ["bmp", "gif", "jpg", "tif", "png", "jpeg", "svg"];
   const imageValidation = (img) => {
-    let extension = img.split(".").pop();
-    if (extension === undefined) {
+    let ext = img.split(".").pop();
+    if (ext === undefined) {
       return false;
     } else {
-      return imageTypes.includes(extension);
+      return imageTypes.includes(ext);
     }
   };
 
@@ -50,7 +50,7 @@ export default function Create() {
 
     if (allNamePokemons.includes(pokemon.name) || !pokemon.name.length) {
       setErr({ ...err, errName: "invalid name" });
-    } else if (!imageValidation(pokemon.image)) {
+    } else if (pokemon.image.length !== 0 && !imageValidation(pokemon.image)) {
       setErr({ ...err, errImage: "invalid url" });
     }
     // else if (
@@ -66,6 +66,9 @@ export default function Create() {
     else {
       axios.post("http://localhost:3001/pokemons", pokemon);
       setPokemon(pokemonDefault);
+      dispatch(getPokemon);
+      setErr({ ...err, errName: "" });
+      setErr({ ...err, errName: "" });
       alert("successfully created Pokémon");
     }
   };
@@ -79,7 +82,9 @@ export default function Create() {
     !(allNamePokemons.includes(pokemon.name) || !pokemon.name.length) &&
       setErr({ ...err, errName: "" });
 
-    imageValidation(pokemon.image) && setErr({ ...err, errImage: "" });
+    if (pokemon.image.length === 0 || imageValidation(pokemon.image)) {
+      setErr({ ...err, errImage: "" });
+    }
   };
 
   return (

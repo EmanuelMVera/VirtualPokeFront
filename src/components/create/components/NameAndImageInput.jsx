@@ -10,7 +10,6 @@ export default function NameAndImageInput({
 }) {
   return (
     <div className={styles.nameAndImageInput}>
-      {console.log(errName)}
       <input
         type="text"
         placeholder="Name..."
@@ -18,7 +17,7 @@ export default function NameAndImageInput({
         value={pokemon.name}
         onChange={handleChange}
       />
-      {errName.length>0 && <h1 className={styles.err}>{errName}</h1>}
+      {errName.length > 0 && <h1 className={styles.err}>{errName}</h1>}
 
       <img src={pokemon.image || silueta} alt="pokemon" />
       <input
@@ -28,7 +27,7 @@ export default function NameAndImageInput({
         value={pokemon.image}
         onChange={handleChange}
       />
-      {errImage.length>0 && <h1 className={styles.err}>{errImage}</h1>}
+      {errImage.length > 0 && <h1 className={styles.err}>{errImage}</h1>}
     </div>
   );
 }
