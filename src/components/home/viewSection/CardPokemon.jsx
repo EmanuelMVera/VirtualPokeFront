@@ -1,0 +1,32 @@
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { resetStatePokemonByName } from "../../../redux/actions";
+import style from "../styles/cardPokemon.module.css";
+
+export default function CardPokemon() {
+  let pokemon = useSelector((state) => state.pokemonByName[0]);
+  const dispatch = useDispatch();
+
+  const reset = () => {
+    dispatch(resetStatePokemonByName());
+  };
+
+  return (
+    <div className={style.card}>
+      <div className={style.close}>
+        <button onClick={reset}>X</button>
+      </div>
+
+      {pokemon.name === "err" ? (
+        <div className={style.err}>
+          <span>Pokemon no encontrado</span>
+        </div>
+      ) : (
+        <div className={style.pokemon}>
+          <span>{pokemon.name}</span>
+          <img src={pokemon.image} alt="imagen del pokemon" />
+        </div>
+      )}
+    </div>
+  );
+}

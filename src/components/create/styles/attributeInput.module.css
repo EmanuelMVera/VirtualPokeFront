@@ -1,0 +1,49 @@
+.attributeInput {
+  display: grid;
+  gap: 1vh;
+  grid-template-columns: 1fr 1fr;
+  align-content: space-around;
+}
+
+.attributeInput div {
+  font-weight: 800;
+  font-size: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attributeInput input {
+  border-bottom-color: red;
+  border-bottom-width: 5px;
+  border-style: none none groove none;
+  width: 9vh;
+  height: 4vh;
+  font-size: 4vh;
+  text-align: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+@media screen and (max-width: 530px) {
+  .attributeInput input {
+    width: 7vh;
+    height: 3vh;
+    font-size: 2vh;
+  }
+  .attributeInput div {
+    font-size: 2vh;
+  }
+}
+@media only screen and (max-width: 530px) {
+  .attributeInput input {
+    width: 7vh;
+    height: 3vh;
+    font-size: 2vh;
+  }
+  .attributeInput div {
+    font-size: 2vh;
+  }
+}

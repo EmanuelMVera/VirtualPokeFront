@@ -1,0 +1,15 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d9750b;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(10%, #f90),
+    to(#e76a00)
+  );
+  background-image: linear-gradient(#f90 10%, #e76a00 100%);
+  width: 100%;
+}

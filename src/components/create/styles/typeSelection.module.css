@@ -1,0 +1,21 @@
+.typeSelection {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1vh;
+  padding: 2vh;
+}
+@media screen and (max-width: 780px) {
+  .typeSelection {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (max-width: 630px) {
+  .typeSelection {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen (max-width: 530px) {
+  .typeSelection {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

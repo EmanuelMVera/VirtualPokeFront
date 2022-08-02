@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+.sectionDetail {
+  display: grid;
+  place-content: center;
+  height: 90vh;
+}
+.cardBorder {
+  border-radius: 10px;
+  background-color: rgb(254, 127, 0);
+  box-shadow: 5px 5px 2px #48529944;
+}
+.card {
+  display: flex;
+  color: white;
+  border-color: rgb(255, 102, 0);
+  border-width: 5px;
+  border-style: solid;
+  text-align: center;
+  margin: 2vh;
+  justify-content: space-evenly;
+}
+.weightAndHeight {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh;
+  justify-content: space-evenly;
+}
+.weightAndHeight div {
+  display: flex;
+}
+.detailCenter {
+  padding: 1vh;
+}
+.detailCenter .name {
+  font-size: 10vh;
+  margin: 1vh;
+}
+.detailCenter .id{
+  font-size: 2vh;
+}
+.atributtes {
+  font-size: 2vh;
+  background-color: #f90;
+  display: grid;
+  gap: 1vh;
+  justify-items: center;
+  align-items: center;
+  padding: 2vh;
+}
+.atributtes img {
+  width: 5vh;
+}
+.atributtes div {
+  display: flex;
+  padding: 1vh;
+  align-items: center;
+}
+
+.detailCenter img {
+  width: 30vh;
+}
+
+.boxTypes{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

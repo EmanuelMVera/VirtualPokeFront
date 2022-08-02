@@ -1,0 +1,193 @@
+.searchButton,
+.createButton {
+  cursor: pointer;
+
+  background-color: #ff0000;
+  color: white;
+
+  border-radius: 4px;
+
+  font-size: 2vh;
+
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.buttonLink {
+  margin: 2vh;
+}
+.buttonLink button {
+  cursor: pointer;
+  width: 100%;
+  background-color: #d9750b;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(10%, #f90),
+    to(#e76a00)
+  );
+  background-image: linear-gradient(#f90 10%, #e76a00 100%);
+  width: 100%;
+  color: white;
+  border-color: #ffffff9c;
+  border-width: 1vh;
+  border-style: groove;
+  height: 7vh;
+  text-align: center;
+  font-size: 2vh;
+}
+
+.typeButtonHome,
+.typeButtonDetail {
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  font-size: 2.2vh;
+  font-family: roboto;
+  font-weight: 800;
+  border-radius: 5px;
+}
+.typeButtonHome {
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  margin: 4px;
+}
+.typeButtonDetail {
+  text-shadow: 6px 4px 6px rgb(0 0 0);
+  padding: 1vh;
+  margin: 1vh;
+}
+.typeButtonFalse,
+.typeButtonActive {
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  font-size: 2.2vh;
+  font-family: roboto;
+  font-weight: 800;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  margin: 4px;
+  border-width: 10px;
+}
+.typeButtonFalse {
+  border-color: #cfccc7cc;
+  border-style: outset;
+}
+.typeButtonActive {
+  border-color: #43e51d;
+  border-style: inset;
+}
+
+/*colores para tipos de Pokemon*/
+.flying {
+  background-color: #8367ff;
+}
+.rock {
+  background-color: #ce8236;
+}
+.steel {
+  background-color: #747373;
+}
+.grass {
+  background-color: #6dff24;
+}
+.ice {
+  background-color: #63d0f5;
+}
+.fairy {
+  background-color: #fa7bfa;
+}
+.normal {
+  background-color: #b8a172;
+}
+.poison {
+  background-color: #bd4aa0;
+}
+.bug {
+  background-color: #8bb92d;
+}
+.fire {
+  background-color: #ff7f00;
+}
+.electric {
+  background-color: #ffd700;
+}
+.dragon {
+  background-color: #7a50ce;
+}
+.unknown {
+  background-color: #ceab2e;
+}
+.fighting {
+  background-color: #ff6a6a;
+}
+.ground {
+  background-color: #d89844;
+}
+.ghost {
+  background-color: #5c6975;
+}
+.water {
+  background-color: #1dacff;
+}
+.psychic {
+  background-color: #ff7e9a;
+}
+.dark {
+  background-color: #313131;
+}
+.shadow {
+  background-color: #471966;
+}
+
+.submit {
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border: 1px solid #995309;
+  border-radius: 4px;
+  background-color: #d9750b;
+  color: #fff;
+
+  font-size: 3vh;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 1px 3px rgba(0, 0, 0, 0.2);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(10%, #f90),
+    to(#e76a00)
+  );
+  background-image: linear-gradient(#f90 10%, #e76a00 100%);
+}
+
+.submit:hover,
+.submit:focus,
+.buttonLink button:hover,
+.buttonLink button:focus {
+  background-color: #e0811b;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(10%, #f0a100),
+    to(#f70)
+  );
+  background-image: linear-gradient(#f0a100 10%, #f70 100%);
+}
+
+.submit:active {
+  background-color: #cf6a00;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2) inset;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(10%, #f0a100),
+    to(#f70)
+  );
+  background-image: linear-gradient(#f0a100 10%, #f70 100%);
+}
