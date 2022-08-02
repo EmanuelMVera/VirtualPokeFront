@@ -4,14 +4,12 @@
   align-items: center;
   justify-content: center;
   height: 80vh;
-  /* background-color: red; */
 }
 .close {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 50vh;
-  /* background-color: green; */
 }
 .close button {
   cursor: pointer;

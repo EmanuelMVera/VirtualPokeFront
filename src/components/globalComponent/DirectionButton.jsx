@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 
 import stylesButton from "../globalStyles/buttonsStyle.module.css";
 
-export default function DirectionButton({ direction, labelDirection }) {
+export default function DirectionButton({
+  nextPath,
+  nameNextPath,
+  functionPath,
+}) {
   return (
-    <Link to={`/${direction}`} className={stylesButton.buttonLink}>
-      <button>{labelDirection}</button>
+    <Link to={`/${nextPath}`} className={stylesButton.buttonLink}>
+      <button onClick={functionPath}>{nameNextPath}</button>
     </Link>
   );
 }

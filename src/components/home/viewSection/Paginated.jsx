@@ -1,10 +1,9 @@
 import React from "react";
 import styles from "../styles/paginated.module.css";
 import { changePage } from "../../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-export default function Paginated() {
-  let pokemons = useSelector((state) => state.filteredPokemons);
+export default function Paginated({ pokemons }) {
   let dispatch = useDispatch();
 
   let cantPages = pokemons.length / 12;

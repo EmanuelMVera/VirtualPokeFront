@@ -8,6 +8,7 @@ export const SORT_BY = "Sort_By";
 export const CHANGE_PAGE = "Change_Page";
 export const GET_POKEMON_BY_ID = "Get_Pokemon_By_Id";
 export const RESET_STATE_POKEMON_BY_NAME = "Reset_State_Pokemon_By_Name";
+export const RESET_DETAIL = "Reset_Detail";
 
 export function getPokemon() {
   return async function (dispatch) {
@@ -83,6 +84,13 @@ export function changePage(page) {
 export function resetStatePokemonByName() {
   return {
     type: RESET_STATE_POKEMON_BY_NAME,
+    payload: "",
+  };
+}
+
+export function resetDetail() {
+  return {
+    type: RESET_DETAIL,
     payload: "",
   };
 }

@@ -8,6 +8,7 @@ import {
   SORT_BY,
   CHANGE_PAGE,
   RESET_STATE_POKEMON_BY_NAME,
+  RESET_DETAIL,
 } from "../actions/index";
 
 const initialState = {
@@ -72,7 +73,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         pokemonByName: {},
       };
-
+    case RESET_DETAIL:
+      return {
+        ...state,
+        pokemonDetail: {},
+      };
     default:
       return state;
   }

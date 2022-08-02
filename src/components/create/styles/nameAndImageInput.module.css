@@ -20,9 +20,16 @@
 @media only screen and (max-width: 530px) {
   .nameAndImageInput input {
     height: 2vh;
-  font-size: 2vh;
+    font-size: 2vh;
   }
   .nameAndImageInput img {
     width: 15vh;
   }
+}
+
+.err {
+  color: red;
+  font-size: 2vh;
+  width: 100%;
+  display: flex;
 }

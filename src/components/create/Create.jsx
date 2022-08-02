@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector /*, useDispatch */ } from "react-redux";
 import axios from "axios";
 import styles from "./styles/create.module.css";
 import styleButton from "../globalStyles/buttonsStyle.module.css";
 
 import TypeSelection from "./components/TypeSelection";
 import NameAndImageInput from "./components/NameAndImageInput";
-import AttributeInput from "./components/AttributeInput";
 import NavBar from "../globalComponent/navBar";
-import { getPokemon } from "../../redux/actions";
+// import { getPokemon } from "../../redux/actions";
+import Stats from "./components/Stats";
+import WeightAndHeight from "./components/WeightAndHeight";
 
 let pokemonDefault = {
   name: "",
@@ -21,57 +22,84 @@ let pokemonDefault = {
   weight: 0,
   typesId: [],
 };
-const attributeRestriction = (num) => (num >= 0 && num <= 100 ? true : false);
 
 export default function Create() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [pokemon, setPokemon] = useState(pokemonDefault);
+  const [err, setErr] = useState({ errName: "", errImage: "" });
   const allPokemons = useSelector((state) => state.filteredPokemons);
+  let allNamePokemons = allPokemons.map((poke) => poke.name);
+
+  // Validacion para formato de imagenes
+  let imageTypes = ["bmp", "gif", "jpg", "tif", "png", "jpeg", "svg"];
+  const imageValidation = (img) => {
+    let extension = img.split(".").pop();
+    if (extension === undefined) {
+      return false;
+    } else {
+      return imageTypes.includes(extension);
+    }
+  };
+
+  // validacion para numeros
+  // const attributeRestriction = (num) =>
+  //   isNaN(num) && num >= 0 && num <= 100 ? true : false;
 
   const handleSubmit = (e) => {
-    dispatch(getPokemon());
-    let allNamePokemons = allPokemons.map((poke) => poke.name);
-
     e.preventDefault();
-    if (allNamePokemons.includes(pokemon.name)) {
-      alert("Pokémon already exist");
-    } else if (!pokemon.name.length) {
-      alert("Pokémon name is required");
-    } else if (
-      !attributeRestriction(pokemon.hp) &&
-      !attributeRestriction(pokemon.strength) &&
-      !attributeRestriction(pokemon.defense) &&
-      !attributeRestriction(pokemon.speed) &&
-      !attributeRestriction(pokemon.height) &&
-      !attributeRestriction(pokemon.weight)
-    ) {
-      alert("the attribute must be a value between 0 and 100");
-    } else {
+
+    if (allNamePokemons.includes(pokemon.name) || !pokemon.name.length) {
+      setErr({ ...err, errName: "invalid name" });
+    } else if (!imageValidation(pokemon.image)) {
+      setErr({ ...err, errImage: "invalid url" });
+    }
+    // else if (
+    //   !attributeRestriction(pokemon.hp) &&
+    //   !attributeRestriction(pokemon.strength) &&
+    //   !attributeRestriction(pokemon.defense) &&
+    //   !attributeRestriction(pokemon.speed) &&
+    //   !attributeRestriction(pokemon.height) &&
+    //   !attributeRestriction(pokemon.weight)
+    // ) {
+    //   alert("invalid number");
+    // }
+    else {
       axios.post("http://localhost:3001/pokemons", pokemon);
       setPokemon(pokemonDefault);
       alert("successfully created Pokémon");
     }
-    dispatch(getPokemon());
   };
+
   const handleChange = (e) => {
     setPokemon({
       ...pokemon,
       [e.target.name]: e.target.value,
     });
+
+    !(allNamePokemons.includes(pokemon.name) || !pokemon.name.length) &&
+      setErr({ ...err, errName: "" });
+
+    imageValidation(pokemon.image) && setErr({ ...err, errImage: "" });
   };
 
   return (
     <div className={styles.create}>
-      <NavBar direction="home" labelDirection="BACK TO HOME" />
+      <NavBar currentPath="create" />
       <form onSubmit={handleSubmit} className={styles.form} autocomplete="off">
         <div className={styles.attribute}>
-          <NameAndImageInput pokemon={pokemon} handleChange={handleChange} />
-          <AttributeInput pokemon={pokemon} handleChange={handleChange} />
+          <WeightAndHeight pokemon={pokemon} handleChange={handleChange} />
+          <NameAndImageInput
+            pokemon={pokemon}
+            handleChange={handleChange}
+            errName={err.errName}
+            errImage={err.errImage}
+          />
+          <Stats pokemon={pokemon} handleChange={handleChange} />
         </div>
         <TypeSelection pokemon={pokemon} setPokemon={setPokemon} />
 
         <button type="submit" className={styleButton.submit}>
-          TO CREATE
+          CREATE
         </button>
       </form>
     </div>

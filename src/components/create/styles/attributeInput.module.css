@@ -1,19 +1,48 @@
-.attributeInput {
-  display: grid;
-  gap: 1vh;
-  grid-template-columns: 1fr 1fr;
-  align-content: space-around;
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: 800;
+  padding: 2vh;
+}
+.stats .ap,
+.hp,
+.defense,
+.speed {
+  margin-top: 2vh;
+}
+.stats .hp {
+  color: red;
+}
+.stats .ap {
+  color: rgb(255, 204, 1);
+}
+.stats .defense {
+  color: blue;
+}
+.stats .speed {
+  color: green;
 }
 
-.attributeInput div {
+.weightAndHeight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh;
+}
+
+.weightAndHeight div {
   font-weight: 800;
   font-size: 3vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2vh;
 }
 
-.attributeInput input {
+.weightAndHeight input {
   border-bottom-color: red;
   border-bottom-width: 5px;
   border-style: none none groove none;
@@ -26,24 +55,79 @@
 input[type="number"]::-webkit-inner-spin-button {
   opacity: 1;
 }
-
-@media screen and (max-width: 530px) {
-  .attributeInput input {
+@media screen and (max-width: 930px) {
+  .weightAndHeight {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .weightAndHeight input {
     width: 7vh;
     height: 3vh;
     font-size: 2vh;
   }
-  .attributeInput div {
+  .weightAndHeight div {
     font-size: 2vh;
+  }
+  .stats {
+    align-items: center;
+  }
+  .stats .ap,
+  .hp,
+  .defense,
+  .speed {
+    font-size: 2vh;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20vh 40vh 5vh;
+    align-items: center;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 530px) {
+  .weightAndHeight {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .weightAndHeight input {
+    width: 7vh;
+    height: 3vh;
+    font-size: 2vh;
+  }
+  .weightAndHeight div {
+    font-size: 2vh;
+  }
+  .stats .ap,
+  .hp,
+  .defense,
+  .speed {
+    font-size: 2vh;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20vh 40vh 5vh;
+    align-items: center;
   }
 }
 @media only screen and (max-width: 530px) {
-  .attributeInput input {
+  .weightAndHeight {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .weightAndHeight input {
     width: 7vh;
     height: 3vh;
     font-size: 2vh;
   }
-  .attributeInput div {
+  .weightAndHeight div {
     font-size: 2vh;
+  }
+  .stats .ap,
+  .hp,
+  .defense,
+  .speed {
+    font-size: 2vh;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20vh 40vh 5vh;
+    align-items: center;
   }
 }

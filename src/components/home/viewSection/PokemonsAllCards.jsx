@@ -7,6 +7,8 @@ import PokemonSingleCard from "./PokemonSingleCard";
 import filteredByCreated from "../middlewares/filteredByCreated";
 import filteredByTypes from "../middlewares/filteredByTypes";
 import orderBy from "../middlewares/orderBy";
+import Paginated from "./Paginated";
+import Loader from "../../globalComponent/Loader";
 
 export default function PokemonsAllCards() {
   let pokemons = useSelector((state) => state.filteredPokemons);
@@ -19,30 +21,28 @@ export default function PokemonsAllCards() {
   for (let i = page * 12; i <= page * 12 + 11; i++) {
     pageArray.push(i);
   }
-  
 
   pokemons = filteredByCreated(pokemons, filterCreated);
   pokemons = filteredByTypes(pokemons, filterTypes);
   pokemons = orderBy(pokemons, filterOrderBy);
 
   return (
-    <div className={styles.cards}>
+    <>
+      <Paginated pokemons={pokemons} />
       {pokemons.length ? (
-        pokemons.map((pokemon, index) => {
-          if (pageArray.includes(index)) {
+        <div className={styles.cards}>
+          {pokemons.map((pokemon, index) => {
             return (
-              <PokemonSingleCard
-                key={pokemon.id}
-                pokemon={pokemon}
-              />
+              pageArray.includes(index) && (
+                <PokemonSingleCard key={pokemon.id} pokemon={pokemon} />
+              )
             );
-          } else {
-            return console.log("Cargando pokemons...");
-          }
-        })
+          })}
+        </div>
       ) : (
-        <h1>Cargando....</h1>
+        <Loader />
       )}
-    </div>
+      <Paginated pokemons={pokemons} />
+    </>
   );
 }

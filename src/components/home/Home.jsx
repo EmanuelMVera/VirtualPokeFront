@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      <NavBar direction="create" labelDirection="CREATE POKÉMON" />
+      <NavBar currentPath="home" />
       <AsideSection />
       <ViewSection className={styles.viewSection} />
     </div>
