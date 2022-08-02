@@ -64,7 +64,7 @@ export default function Create() {
     //   alert("invalid number");
     // }
     else {
-      axios.post("http://localhost:3001/pokemons", pokemon);
+      axios.post("https://pipokemonhenry27c.herokuapp.com/pokemons", pokemon);
       setPokemon(pokemonDefault);
       dispatch(getPokemon);
       setErr({ ...err, errName: "" });
