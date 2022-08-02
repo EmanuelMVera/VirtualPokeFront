@@ -15,7 +15,7 @@ let pokemonDefault = {
   name: "",
   image: "",
   hp: 0,
-  strength: 0,
+  attack: 0,
   defense: 0,
   speed: 0,
   height: 0,
@@ -55,7 +55,7 @@ export default function Create() {
     }
     // else if (
     //   !attributeRestriction(pokemon.hp) &&
-    //   !attributeRestriction(pokemon.strength) &&
+    //   !attributeRestriction(pokemon.attack) &&
     //   !attributeRestriction(pokemon.defense) &&
     //   !attributeRestriction(pokemon.speed) &&
     //   !attributeRestriction(pokemon.height) &&
