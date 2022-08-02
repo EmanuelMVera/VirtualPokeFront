@@ -21,8 +21,8 @@ export default function Stats({ pokemon, handleChange }) {
         <label>Attack Power(AP): </label>
         <input
           type="range"
-          name="attack"
-          value={pokemon.attack}
+          name="strength"
+          value={pokemon.strength}
           min="0"
           max="100"
           onChange={handleChange}

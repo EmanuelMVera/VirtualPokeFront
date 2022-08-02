@@ -15,7 +15,7 @@ let pokemonDefault = {
   name: "",
   image: "",
   hp: 0,
-  attack: 0,
+  strength: 0,
   defense: 0,
   speed: 0,
   height: 0,
