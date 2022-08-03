@@ -14,7 +14,7 @@ export default function Intro() {
         </p>
       </div>
       <Link to={`/home`} className={style.button}>
-        <button>Comenzar</button>
+        <button className={style.button}>Comenzar</button>
       </Link>
     </div>
   );
