@@ -1,17 +1,30 @@
-.container {
-  width: 100%;
+.intro {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   height: 100vh;
-  position: relative;
 }
-.container img {
-  width: 100%;
-  height: 99vh;
+
+.description {
+  background: rgba(0, 0, 0, 0.433);
+  border-radius: 10px;
+  /* color: white; */
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 1px black;
+  font-weight: 800;
+  text-align: center;
 }
+.description h1 {
+  font-size: 5vh;
+  margin: 6vh;
+}
+.description p {
+  margin: 8vh;
+  font-size: 3vh;
+}
+
 .button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40%;
-  font-size: 100%;
+  border-radius: 10px;
+  width: 20vh;
+  height: 10vh;
 }
