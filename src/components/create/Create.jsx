@@ -48,7 +48,7 @@ export default function Create() {
 
     if (
       dispatch(getPokemonByName(pokemon.name === "err")) ||
-      !(pokemon.name.length > 0 || /\s/.test(pokemon.name))
+      !(pokemon.name.length > 0 /*|| /\s/.test(pokemon.name)*/)
     ) {
       setErr({ ...err, errName: true });
     } else if (!imageValidation(pokemon.image)) {
