@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 30vw;
-  height: 38vh;
+  height: 34vh;
   margin: 1vw 1vw 1vh 1vw;
   justify-content: center;
 }
@@ -18,4 +18,18 @@
 }
 .nameAndImageInput img {
   width: 26vh;
+}
+.nameAndImageInput span {
+  width: 30vw;
+  height: 2vh;
+  color: red;
+  font-size: 2vh;
+  text-align-last: start;
+}
+
+.hiden {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
 }

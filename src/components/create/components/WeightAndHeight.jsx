@@ -12,7 +12,6 @@ export default function WeightAndHeight({ pokemon, handleChange }) {
           value={pokemon.height}
           min="0"
           max="100"
-          pattern="^[0-9]+"
           onChange={handleChange}
         />
         <label>in</label>
@@ -26,7 +25,6 @@ export default function WeightAndHeight({ pokemon, handleChange }) {
           value={pokemon.weight}
           min="0"
           max="100"
-          pattern="^[0-9]+"
           onChange={handleChange}
         />
         <label>lbs</label>

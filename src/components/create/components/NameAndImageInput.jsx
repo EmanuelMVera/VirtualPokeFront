@@ -2,22 +2,22 @@ import React from "react";
 import silueta from "./silueta.png";
 import styles from "../styles/nameAndImageInput.module.css";
 
-export default function NameAndImageInput({
-  pokemon,
-  handleChange,
-  errName,
-  errImage,
-}) {
+export default function NameAndImageInput({ pokemon, handleChange, err }) {
+  let hideName = err.errName ? "show" : "hiden";
+  let hideImage = err.errImage ? "show" : "hiden";
+
   return (
     <div className={styles.nameAndImageInput}>
       <input
         type="text"
         placeholder="Name..."
         name="name"
+        autoComplete="off"
         value={pokemon.name}
         onChange={handleChange}
       />
-      {errName.length > 0 && <h1 className={styles.err}>{errName}</h1>}
+
+      <span className={styles[hideName]}>Invalid required name</span>
 
       <img src={pokemon.image || silueta} alt="pokemon" />
       <input
@@ -27,7 +27,7 @@ export default function NameAndImageInput({
         value={pokemon.image}
         onChange={handleChange}
       />
-      {errImage.length > 0 && <h1 className={styles.err}>{errImage}</h1>}
+      <span className={styles[hideImage]}>invalid image format</span>
     </div>
   );
 }

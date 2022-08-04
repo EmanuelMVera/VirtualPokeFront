@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import styles from "./styles/create.module.css";
 import styleButton from "../globalStyles/buttonsStyle.module.css";
@@ -7,7 +7,7 @@ import styleButton from "../globalStyles/buttonsStyle.module.css";
 import TypeSelection from "./components/TypeSelection";
 import NameAndImageInput from "./components/NameAndImageInput";
 import NavBar from "../globalComponent/navBar";
-import { getPokemon } from "../../redux/actions";
+import { getPokemon, getPokemonByName } from "../../redux/actions";
 import Stats from "./components/Stats";
 import WeightAndHeight from "./components/WeightAndHeight";
 
@@ -26,9 +26,7 @@ let pokemonDefault = {
 export default function Create() {
   const dispatch = useDispatch();
   const [pokemon, setPokemon] = useState(pokemonDefault);
-  const [err, setErr] = useState({ errName: "", errImage: "" });
-  const allPokemons = useSelector((state) => state.filteredPokemons);
-  let allNamePokemons = allPokemons.map((poke) => poke.name);
+  const [err, setErr] = useState({ errName: false, errImage: false });
 
   // Validacion para formato de imagenes
   let imageTypes = ["bmp", "gif", "jpg", "tif", "png", "jpeg", "svg"];
@@ -48,10 +46,13 @@ export default function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (allNamePokemons.includes(pokemon.name) || !pokemon.name.length) {
-      setErr({ ...err, errName: "invalid name" });
-    } else if (pokemon.image.length !== 0 && !imageValidation(pokemon.image)) {
-      setErr({ ...err, errImage: "invalid url" });
+    if (
+      dispatch(getPokemonByName(pokemon.name === "err")) ||
+      !(pokemon.name.length > 0 || /\s/.test(pokemon.name))
+    ) {
+      setErr({ ...err, errName: true });
+    } else if (!imageValidation(pokemon.image)) {
+      setErr({ ...err, errImage: true });
     }
     // else if (
     //   !attributeRestriction(pokemon.hp) &&
@@ -66,9 +67,10 @@ export default function Create() {
     else {
       axios.post("http://localhost:3001/pokemons", pokemon);
       setPokemon(pokemonDefault);
+
       dispatch(getPokemon);
-      setErr({ ...err, errName: "" });
-      setErr({ ...err, errName: "" });
+      setErr({ ...err, errName: true });
+      setErr({ ...err, errName: true });
       alert("successfully created Pokémon");
     }
   };
@@ -79,25 +81,30 @@ export default function Create() {
       [e.target.name]: e.target.value,
     });
 
-    !(allNamePokemons.includes(pokemon.name) || !pokemon.name.length) &&
-      setErr({ ...err, errName: "" });
+    e.target.name === "name" &&
+      (e.target.name === "name" && e.target.value !== ""
+        ? setErr({ ...err, errName: false })
+        : setErr({ ...err, errName: true }));
 
-    if (pokemon.image.length === 0 || imageValidation(pokemon.image)) {
-      setErr({ ...err, errImage: "" });
-    }
+    e.target.name === "image" &&
+      (e.target.name === "image" && e.target.value === ""
+        ? setErr({ ...err, errImage: false })
+        : setErr({ ...err, errImage: true }));
+
+    console.log("errName: " + err.errName);
+    console.log("errImage: " + err.errImage);
   };
 
   return (
     <div className={styles.create}>
       <NavBar currentPath="create" />
-      <form onSubmit={handleSubmit} className={styles.form} autocomplete="off">
+      <form onSubmit={handleSubmit} className={styles.form} >
         <div className={styles.attribute}>
           <WeightAndHeight pokemon={pokemon} handleChange={handleChange} />
           <NameAndImageInput
             pokemon={pokemon}
             handleChange={handleChange}
-            errName={err.errName}
-            errImage={err.errImage}
+            err={err}
           />
           <Stats pokemon={pokemon} handleChange={handleChange} />
         </div>
