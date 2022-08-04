@@ -6,23 +6,16 @@ import { Link } from "react-router-dom";
 export default function PokemonSingleCard({ pokemon }) {
   return (
     <Link to={`/detail/${pokemon.id}`} className={styles.card}>
-      <img
-        src={pokemon.image}
-        alt="imagen del pokemon"
-        className={styles.pokemon}
-      />
+      <img src={pokemon.image} alt="imagen del pokemon" />
+
       <div className={styles.cardDescription}>
         <span>{pokemon.name}</span>
-        <div>
-          {pokemon.types.map((type, index) => (
-            <div
-              key={index}
-              className={`${styleButton[type]} ${styleButton["typeButtonHome"]}`}
-            >
-              {type}
-            </div>
-          ))}
-        </div>
+
+        {pokemon.types.map((type, index) => (
+          <div key={index} className={`${styleButton[type]}`}>
+            {type}
+          </div>
+        ))}
       </div>
     </Link>
   );

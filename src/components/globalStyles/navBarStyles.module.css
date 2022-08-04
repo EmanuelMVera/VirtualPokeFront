@@ -1,15 +1,9 @@
 .navBar {
-  display: flex;
   align-items: center;
+  height: 10vh;
+  background-color: #0b9b27;
+  background-image: linear-gradient(#033600 10%, #0b8b15);
+  display: flex;
   justify-content: space-between;
-  background-color: #d9750b;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    color-stop(10%, #f90),
-    to(#e76a00)
-  );
-  background-image: linear-gradient(#f90 10%, #e76a00 100%);
   width: 100%;
 }

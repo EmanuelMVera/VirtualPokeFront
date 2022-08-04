@@ -23,8 +23,17 @@ export default function CardPokemon() {
         </div>
       ) : (
         <div className={style.pokemon}>
-          <span>{pokemon.name}</span>
           <img src={pokemon.image} alt="imagen del pokemon" />
+
+          <div className={styles.cardDescription}>
+            <span>{pokemon.name}</span>
+
+            {pokemon.types.map((type, index) => (
+              <div key={index} className={`${styleButton[type]}`}>
+                {type}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
