@@ -19,15 +19,15 @@
 .buttonLink button {
   cursor: pointer;
   width: 100%;
-  background-color: #d9750b;
+  background-color: #2dd90b;
   background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    color-stop(10%, #f90),
-    to(#e76a00)
+    color-stop(10%, rgb(47, 255, 0)),
+    to(#49e700)
   );
-  background-image: linear-gradient(#f90 10%, #e76a00 100%);
+  background-image: linear-gradient(rgb(115, 255, 0) 10%, #45e700 100%);
   width: 100%;
   color: white;
   border-color: #ffffff9c;
@@ -145,9 +145,9 @@
 .submit {
   cursor: pointer;
   padding: 0.6rem 1rem;
-  border: 1px solid #995309;
+  border: 1px solid #1f9909;
   border-radius: 4px;
-  background-color: #d9750b;
+  background-color: #31d90b;
   color: #fff;
 
   font-size: 3vh;
@@ -158,36 +158,36 @@
     linear,
     left top,
     left bottom,
-    color-stop(10%, #f90),
-    to(#e76a00)
+    color-stop(10%, rgb(89, 255, 0)),
+    to(#4de700)
   );
-  background-image: linear-gradient(#f90 10%, #e76a00 100%);
+  background-image: linear-gradient(rgb(55, 255, 0) 10%, #60e700 100%);
 }
 
 .submit:hover,
 .submit:focus,
 .buttonLink button:hover,
 .buttonLink button:focus {
-  background-color: #e0811b;
+  background-color: #6de01b;
   background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    color-stop(10%, #f0a100),
-    to(#f70)
+    color-stop(10%, #34f000),
+    to(rgb(17, 255, 0))
   );
-  background-image: linear-gradient(#f0a100 10%, #f70 100%);
+  background-image: linear-gradient(#48f000 10%, rgb(64, 255, 0) 100%);
 }
 
 .submit:active {
-  background-color: #cf6a00;
+  background-color: #23cf00;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2) inset;
   background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    color-stop(10%, #f0a100),
-    to(#f70)
+    color-stop(10%, #1cf000),
+    to(rgb(77, 255, 0))
   );
-  background-image: linear-gradient(#f0a100 10%, #f70 100%);
+  background-image: linear-gradient(#00f000 10%, rgb(72, 255, 0) 100%);
 }

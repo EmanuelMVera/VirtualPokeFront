@@ -55,7 +55,7 @@ export default function Create() {
     }
     // else if (
     //   !attributeRestriction(pokemon.hp) &&
-    //   !attributeRestriction(pokemon.attack) &&
+    //   !attributeRestriction(pokemon.strength) &&
     //   !attributeRestriction(pokemon.defense) &&
     //   !attributeRestriction(pokemon.speed) &&
     //   !attributeRestriction(pokemon.height) &&
@@ -64,7 +64,7 @@ export default function Create() {
     //   alert("invalid number");
     // }
     else {
-      axios.post("https://pipokemonhenry27c.herokuapp.com/pokemons", pokemon);
+      axios.post("http://localhost:3001/pokemons", pokemon);
       setPokemon(pokemonDefault);
       dispatch(getPokemon);
       setErr({ ...err, errName: "" });

@@ -7,7 +7,6 @@ export default function PokemonSingleCard({ pokemon }) {
   return (
     <Link to={`/detail/${pokemon.id}`} className={styles.card}>
       <img src={pokemon.image} alt="imagen del pokemon" />
-
       <div className={styles.cardDescription}>
         <span>{pokemon.name}</span>
 

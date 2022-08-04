@@ -24,17 +24,17 @@
 }
 .buttonPageOn {
   background-color: white;
-  color: #f90;
+  color: rgb(13, 255, 0);
 }
 .buttonPageOff {
-  background-color: #f90;
+  background-color: rgb(17, 255, 0);
   color: white;
 }
 
 .buttonPageOff:hover {
   pointer-events: painted;
   background-color: rgb(255, 255, 255);
-  color: #f90;
+  color: rgb(55, 255, 0);
 
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);

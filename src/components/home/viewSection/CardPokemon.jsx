@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetStatePokemonByName } from "../../../redux/actions";
 import style from "../styles/cardPokemon.module.css";
+import styleButton from "../../globalStyles/buttonsStyle.module.css";
 
 export default function CardPokemon() {
   let pokemon = useSelector((state) => state.pokemonByName[0]);
@@ -12,30 +13,32 @@ export default function CardPokemon() {
   };
 
   return (
-    <div className={style.card}>
-      <div className={style.close}>
-        <button onClick={reset}>X</button>
-      </div>
-
-      {pokemon.name === "err" ? (
-        <div className={style.err}>
-          <span>Pokemon no encontrado</span>
+    <div className={style.conteiner}>
+      <div className={style.card}>
+        <div className={style.close}>
+          <button onClick={reset}>X</button>
         </div>
-      ) : (
-        <div className={style.pokemon}>
-          <img src={pokemon.image} alt="imagen del pokemon" />
 
-          <div className={styles.cardDescription}>
-            <span>{pokemon.name}</span>
-
-            {pokemon.types.map((type, index) => (
-              <div key={index} className={`${styleButton[type]}`}>
-                {type}
-              </div>
-            ))}
+        {pokemon.name === "err" ? (
+          <div className={style.pokemon}>
+            <span className={style.err}>Pokemon no encontrado</span>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className={style.pokemon}>
+            <img src={pokemon.image} alt="imagen del pokemon" />
+
+            <div className={style.cardDescription}>
+              <span>{pokemon.name}</span>
+
+              {pokemon.types.map((type, index) => (
+                <div key={index} className={`${styleButton[type]}`}>
+                  {type}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

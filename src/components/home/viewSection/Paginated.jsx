@@ -41,7 +41,7 @@ export default function Paginated({ pokemons }) {
             onClick={() => handlechangePage(indice)}
             key={indice}
           >
-            {pag+1}
+            {pag}
           </button>):
           (
             <button
@@ -49,7 +49,7 @@ export default function Paginated({ pokemons }) {
             onClick={() => handlechangePage(indice)}
             key={indice}
           >
-            {pag+1}
+            {pag}
           </button>
           )
         );
