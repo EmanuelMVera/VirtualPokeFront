@@ -47,7 +47,7 @@ export default function Create() {
     e.preventDefault();
 
     if (
-      dispatch(getPokemonByName(pokemon.name === "err")) ||
+      dispatch(getPokemonByName(pokemon.name).name === "err") ||
       !((pokemon.name.length > 0) /*|| /\s/.test(pokemon.name)*/)
     ) {
       setErr({ ...err, errName: true });
