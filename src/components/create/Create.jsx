@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import styles from "./styles/create.module.css";
 import styleButton from "../globalStyles/buttonsStyle.module.css";
@@ -7,7 +7,6 @@ import styleButton from "../globalStyles/buttonsStyle.module.css";
 import TypeSelection from "./components/TypeSelection";
 import NameAndImageInput from "./components/NameAndImageInput";
 import NavBar from "../globalComponent/navBar";
-import { getPokemon, getPokemonByName } from "../../redux/actions";
 import Stats from "./components/Stats";
 import WeightAndHeight from "./components/WeightAndHeight";
 
@@ -24,10 +23,15 @@ let pokemonDefault = {
 };
 
 export default function Create() {
-  const dispatch = useDispatch();
+  let pokemons = useSelector((state) => state.filteredPokemons);
   const [pokemon, setPokemon] = useState(pokemonDefault);
   const [err, setErr] = useState({ errName: false, errImage: false });
 
+  //buscar
+  const validateName = (name) => {
+    let pokemon = pokemons.filter((poke) => (poke.name = name));
+    return pokemon.length > 0;
+  };
   // Validacion para formato de imagenes
   let imageTypes = ["bmp", "gif", "jpg", "tif", "png", "jpeg", "svg"];
   const imageValidation = (img) => {
@@ -47,7 +51,7 @@ export default function Create() {
     e.preventDefault();
 
     if (
-      dispatch(getPokemonByName(pokemon.name).name === "err") ||
+      !validateName(pokemon.name) ||
       !((pokemon.name.length > 0) /*|| /\s/.test(pokemon.name)*/)
     ) {
       setErr({ ...err, errName: true });
