@@ -68,9 +68,8 @@ export default function Create() {
       axios.post("http://localhost:3001/pokemons", pokemon);
       setPokemon(pokemonDefault);
 
-      dispatch(getPokemon);
-      setErr({ ...err, errName: true });
-      setErr({ ...err, errName: true });
+      setErr({ ...err, errName: false });
+      setErr({ ...err, errImage: false });
       alert("successfully created Pokémon");
     }
   };
