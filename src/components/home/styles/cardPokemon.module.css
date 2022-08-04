@@ -8,7 +8,7 @@
 }
 
 .card {
-  width: 80vh;
+  width: 80vw;
   height: 45vh;
   background-image: linear-gradient(0deg, #17720b, #37c91582 50%);
   border-radius: 50px 0px 50px 0px;
@@ -18,7 +18,7 @@
 .close {
   display: flex;
   justify-content: flex-end;
-  width: 80vh;
+  width: 80vw;
   height: 5vh;
 }
 .close button {
@@ -28,7 +28,7 @@
   color: red;
   font-weight: 800;
   border-color: #ff0000cc;
-  width: 5vh;
+  width: 5vw;
   height: 5vh;
 }
 .pokemon .err {
@@ -36,7 +36,7 @@
   font-weight: 900;
 }
 .pokemon {
-  width: 80vh;
+  width: 80vw;
   height: 40vh;
   color: white;
   border-radius: 30px 0px 30px 0px;
@@ -47,11 +47,11 @@
   justify-content: center;
 }
 .pokemon img {
-  width: 40vh;
+  width: 40vw;
   height: 40vh;
 }
 .pokemon .cardDescription {
-  width: 40vh;
+  width: 40vw;
   height: 40vh;
   display: grid;
   grid-template-columns: 1fr;
@@ -59,7 +59,7 @@
 }
 
 .pokemon .cardDescription span {
-  width: 40vh;
+  width: 40vw;
   height: 10vh;
   color: #fff;
   font-size: 100%;
@@ -67,7 +67,7 @@
   text-shadow: 1px 1px 2px #000;
 }
 .pokemon .cardDescription div {
-  width: 40vh;
+  width: 40vw;
   height: 15vh;
   display: flex;
   line-height: center;

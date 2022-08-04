@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: baseline;
+  width: 100vw;
+  height: 7vh;
 }
 .paginated a {
   padding: 1vh;

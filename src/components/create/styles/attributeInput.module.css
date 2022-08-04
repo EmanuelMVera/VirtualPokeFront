@@ -1,17 +1,14 @@
 .stats {
+  width: 30vw;
+  height: 38vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
   font-weight: 800;
-  padding: 2vh;
+  margin: 1vw 1vw 1vh 1vw;
 }
-.stats .ap,
-.hp,
-.defense,
-.speed {
-  margin-top: 2vh;
-}
+
 .stats .hp {
   color: red;
 }
@@ -25,27 +22,46 @@
   color: green;
 }
 
-.weightAndHeight {
+.stats div {
+  height: 9vh;
   display: flex;
+  width: 28vw;
   flex-direction: column;
+  align-items: stretch;
   justify-content: center;
+}
+.stats div label {
+  font-size: 2vh;
+  font-weight: 800;
+}
+.weightAndHeight {
+  width: 32vw;
+  display: flex;
+  height: 40vh;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  padding: 1vh;
 }
 
 .weightAndHeight div {
+  height: 9vh;
+  width: 28vw;
   font-weight: 800;
   font-size: 3vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2vh;
+  width: 32vw;
+  height: 8vh;
 }
-
+.weightAndHeight label {
+  font-size: 4vw;
+  color: #3c3838;
+}
 .weightAndHeight input {
-  border-bottom-color: red;
-  border-bottom-width: 5px;
-  border-style: none none groove none;
+  font-weight: 800;
+  background: #6a6a6a00;
+  border-style: none none none none;
   width: 9vh;
   height: 4vh;
   font-size: 4vh;
@@ -54,80 +70,4 @@
 
 input[type="number"]::-webkit-inner-spin-button {
   opacity: 1;
-}
-@media screen and (max-width: 930px) {
-  .weightAndHeight {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .weightAndHeight input {
-    width: 7vh;
-    height: 3vh;
-    font-size: 2vh;
-  }
-  .weightAndHeight div {
-    font-size: 2vh;
-  }
-  .stats {
-    align-items: center;
-  }
-  .stats .ap,
-  .hp,
-  .defense,
-  .speed {
-    font-size: 2vh;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 20vh 40vh 5vh;
-    align-items: center;
-    margin: 0;
-  }
-}
-@media screen and (max-width: 530px) {
-  .weightAndHeight {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .weightAndHeight input {
-    width: 7vh;
-    height: 3vh;
-    font-size: 2vh;
-  }
-  .weightAndHeight div {
-    font-size: 2vh;
-  }
-  .stats .ap,
-  .hp,
-  .defense,
-  .speed {
-    font-size: 2vh;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 20vh 40vh 5vh;
-    align-items: center;
-  }
-}
-@media only screen and (max-width: 530px) {
-  .weightAndHeight {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .weightAndHeight input {
-    width: 7vh;
-    height: 3vh;
-    font-size: 2vh;
-  }
-  .weightAndHeight div {
-    font-size: 2vh;
-  }
-  .stats .ap,
-  .hp,
-  .defense,
-  .speed {
-    font-size: 2vh;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 20vh 40vh 5vh;
-    align-items: center;
-  }
 }

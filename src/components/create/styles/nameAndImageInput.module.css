@@ -2,34 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2vh;
+  width: 30vw;
+  height: 38vh;
+  margin: 1vw 1vw 1vh 1vw;
+  justify-content: center;
 }
 
 .nameAndImageInput input {
-  width: 100%;
-  border-bottom-color: red;
+  width: 30vw;
+  border-bottom-color: #8367ff;
   border-bottom-width: 5px;
   border-style: none none groove none;
   height: 4vh;
-  font-size: 4vh;
+  font-size: 3vh;
 }
 .nameAndImageInput img {
-  width: 20vh;
-}
-
-@media only screen and (max-width: 530px) {
-  .nameAndImageInput input {
-    height: 2vh;
-    font-size: 2vh;
-  }
-  .nameAndImageInput img {
-    width: 15vh;
-  }
-}
-
-.err {
-  color: red;
-  font-size: 2vh;
-  width: 100%;
-  display: flex;
+  width: 26vh;
 }
