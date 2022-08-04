@@ -48,7 +48,7 @@ export default function Create() {
 
     if (
       dispatch(getPokemonByName(pokemon.name === "err")) ||
-      !(pokemon.name.length > 0 /*|| /\s/.test(pokemon.name)*/)
+      !((pokemon.name.length > 0) /*|| /\s/.test(pokemon.name)*/)
     ) {
       setErr({ ...err, errName: true });
     } else if (!imageValidation(pokemon.image)) {
@@ -87,9 +87,9 @@ export default function Create() {
         : setErr({ ...err, errName: true }));
 
     e.target.name === "image" &&
-      (e.target.name === "image" && e.target.value === ""
-        ? setErr({ ...err, errImage: false })
-        : setErr({ ...err, errImage: true }));
+      e.target.name === "image" &&
+      e.target.value === "" &&
+      setErr({ ...err, errImage: false });
 
     console.log("errName: " + err.errName);
     console.log("errImage: " + err.errImage);
@@ -98,7 +98,7 @@ export default function Create() {
   return (
     <div className={styles.create}>
       <NavBar currentPath="create" />
-      <form onSubmit={handleSubmit} className={styles.form} >
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.attribute}>
           <WeightAndHeight pokemon={pokemon} handleChange={handleChange} />
           <NameAndImageInput
