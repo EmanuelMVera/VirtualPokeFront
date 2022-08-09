@@ -34,7 +34,9 @@ export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let existingPokemon = await axios
-      .get("http://localhost:3001/pokemons?name=" + pokemon.name)
+      .get(
+        "hhttps://pipokemonhenry27c.herokuapp.com/pokemons?name=" + pokemon.name
+      )
       .then(({ data }) => data);
 
     if (Object.keys(formValidatione(pokemon, existingPokemon)).length) {
