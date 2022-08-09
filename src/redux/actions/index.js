@@ -1,5 +1,6 @@
 import axios from "axios";
 export const GET_POKEMONS = "Get_Pokemons";
+export const POST_POKEMON = "Post_Pokemon";
 export const GET_POKEMON_BY_NAME = "Get_Pokemon_By_Name";
 export const GET_TYPES = "Get_types";
 export const FILTERED_BY_CREATED = "Filtered_By_Created";
@@ -18,6 +19,18 @@ export function getPokemon() {
     dispatch({
       type: GET_POKEMONS,
       payload: pedido.data,
+    });
+  };
+}
+export function postPokemon(pokemon) {
+  return async function (dispatch) {
+    await axios.post(
+      "https://pipokemonhenry27c.herokuapp.com/pokemons",
+      pokemon
+    );
+    dispatch({
+      type: POST_POKEMON,
+      payload: pokemon,
     });
   };
 }

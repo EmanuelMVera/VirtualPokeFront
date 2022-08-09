@@ -3,8 +3,9 @@ import silueta from "./silueta.png";
 import styles from "../styles/nameAndImageInput.module.css";
 
 export default function NameAndImageInput({ pokemon, handleChange, err }) {
-  let hideName = err.errName ? "show" : "hiden";
-  let hideImage = err.errImage ? "show" : "hiden";
+  let hideName = err.name ? "show" : "hiden";
+  let hideImage = err.image ? "show" : "hiden";
+  err.attribute && alert(err.attribute);
 
   return (
     <div className={styles.nameAndImageInput}>
@@ -17,7 +18,7 @@ export default function NameAndImageInput({ pokemon, handleChange, err }) {
         onChange={handleChange}
       />
 
-      <span className={styles[hideName]}>Invalid required name</span>
+      <span className={styles[hideName]}>{err.name}</span>
 
       <img src={pokemon.image || silueta} alt="pokemon" />
       <input
@@ -27,7 +28,7 @@ export default function NameAndImageInput({ pokemon, handleChange, err }) {
         value={pokemon.image}
         onChange={handleChange}
       />
-      <span className={styles[hideImage]}>invalid image format</span>
+      <span className={styles[hideImage]}>{err.image}</span>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import {
   GET_POKEMONS,
+  POST_POKEMON,
   GET_POKEMON_BY_NAME,
   GET_POKEMON_BY_ID,
   GET_TYPES,
@@ -14,6 +15,7 @@ import {
 const initialState = {
   page: 0,
   pokemons: [],
+  pokemon: {},
   filteredPokemons: [],
   filterCreated: "default",
   filterTypes: "default",
@@ -31,10 +33,15 @@ export default function reducer(state = initialState, action) {
         pokemons: action.payload,
         filteredPokemons: action.payload,
       };
+    case POST_POKEMON:
+      return {
+        ...state,
+        pokemon: action.payload,
+      };
     case GET_POKEMON_BY_NAME:
       return {
         ...state,
-        pokemonByName: [action.payload],
+        pokemonByName: action.payload,
       };
     case GET_POKEMON_BY_ID:
       return {
@@ -78,6 +85,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         pokemonDetail: {},
       };
+
     default:
       return state;
   }
