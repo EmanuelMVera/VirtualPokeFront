@@ -6,6 +6,7 @@ import styleButton from "../../globalStyles/buttonsStyle.module.css";
 
 export default function CardPokemon() {
   let pokemon = useSelector((state) => state.pokemonByName[0]);
+  console.log(pokemon);
   const dispatch = useDispatch();
 
   const reset = () => {
