@@ -5,7 +5,7 @@ import style from "../styles/cardPokemon.module.css";
 import styleButton from "../../globalStyles/buttonsStyle.module.css";
 
 export default function CardPokemon() {
-  let pokemon = useSelector((state) => state.pokemonByName[0]);
+  let pokemon = useSelector((state) => state.pokemonByName);
   console.log(pokemon);
   const dispatch = useDispatch();
 

@@ -8,7 +8,7 @@ export default function ViewSection() {
   let pokemonByName = useSelector((state) => state.pokemonByName);
   return (
     <div className={styles.viewSection}>
-      {pokemonByName.length > 0 ? (
+      {Object.keys(pokemonByName).length > 0 ? (
         <CardPokemon />
       ) : (
         <>
