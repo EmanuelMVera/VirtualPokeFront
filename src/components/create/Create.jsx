@@ -35,7 +35,7 @@ export default function Create() {
     e.preventDefault();
     let existingPokemon = await axios
       .get(
-        "hhttps://pipokemonhenry27c.herokuapp.com/pokemons?name=" + pokemon.name
+        "https://pipokemonhenry27c.herokuapp.com/pokemons?name=" + pokemon.name
       )
       .then(({ data }) => data);
 
