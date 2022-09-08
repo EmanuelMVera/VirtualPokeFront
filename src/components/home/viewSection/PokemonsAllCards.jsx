@@ -26,9 +26,11 @@ export default function PokemonsAllCards() {
     filteredByCreated(state.pokemons, filterTypes)
   );
 
-  console.log("created: " + pokemonsCreated);
-  console.log("Order: " + pokemonsOrderBy);
-  console.log("types: " + pokemonsTypes);
+  const allPokemons = pokemonsCreated.filter((pokemon) =>
+    pokemonsTypes.includes(pokemon.id)
+  );
+
+  console.log("all poke: " + allPokemons);
 
   let page = useSelector((state) => state.page);
 
