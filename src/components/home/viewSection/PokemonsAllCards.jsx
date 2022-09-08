@@ -26,8 +26,8 @@ export default function PokemonsAllCards() {
     filteredByCreated(state.pokemons, filterTypes)
   );
 
-  const allPokemons = pokemonsCreated.filter((pokemon) =>
-    pokemonsTypes.includes(pokemon.id)
+  const allPokemons = pokemonsCreated.filter((poke) =>
+    pokemonsTypes.map((tipo) => tipo.id).includes(poke.id)
   );
 
   console.log("all poke: " + allPokemons);
