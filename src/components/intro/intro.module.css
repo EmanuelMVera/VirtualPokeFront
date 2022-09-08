@@ -15,12 +15,12 @@
   text-align: center;
 }
 .description h1 {
-  font-size: 7vh;
+  font-size: 7vw;
   margin: 2vh;
   margin-top: 10vh;
 }
 .description p {
-  font-size: 5vh;
+  font-size: 5vw;
   margin: 2vh;
   margin-bottom: 10vh;
   font-style: oblique;
@@ -33,7 +33,7 @@
   border-style: inset;
   background: #46c936;
   color: white;
-  font-size: 3vh;
+  font-size: 3vw;
   font-weight: 800;
   width: 20vw;
   height: 10vh;

@@ -14,7 +14,7 @@
   border: 2px solid #000000;
   border-radius: 4px;
 
-  font-size: 2vh;
+  font-size: 2vw;
 
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
@@ -33,7 +33,7 @@
 .textBox {
   background: #ffffff;
   border: 1 solid;
-  font-size: 3vh;
+  font-size: 3vw;
   color: black;
   border-radius: 10px;
   padding: 1vh;
