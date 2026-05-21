@@ -1,61 +1,46 @@
 import React from "react";
-import styles from "../styles/paginated.module.css";
-import { changePage } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-// import { useState } from "react";
+import { setPage } from "../../../redux/slices/pokemonSlice";
 
-export default function Paginated({ pokemons }) {
-  let page = useSelector((state) => state.page);
-  let dispatch = useDispatch();
+const ITEMS_PER_PAGE = 12;
 
-  let cantPages = pokemons.length / 12;
+export default function Paginated({ totalCount }) {
+  const page = useSelector((state) => state.pokemon.page);
+  const dispatch = useDispatch();
 
-  const handlechangePage = (index) => {
-    dispatch(changePage(index));
-  };
-  const handlechangePagePrevius = () => {
-    page > 0 && dispatch(changePage(page - 1));
-  };
-  const handlechangePageNext = () => {
-    page < cantPages - 1 && dispatch(changePage(page + 1));
-  };
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
+  if (totalPages <= 1) return null;
 
-  let pages = [];
-  for (let i = 0; i < cantPages; i++) {
-    pages.push(i);
-  }
+  const pages = Array.from({ length: totalPages }, (_, i) => i);
 
   return (
-    <div className={styles.paginado}>
+    <div className="flex items-center justify-center gap-2 py-4 px-4 flex-wrap">
       <button
-        className={styles.buttonPageOff}
-        onClick={() => handlechangePagePrevius()}
+        onClick={() => dispatch(setPage(Math.max(0, page - 1)))}
+        disabled={page === 0}
+        className="px-3 py-1.5 rounded-lg border border-gray-700 text-gray-300 hover:border-green-500 hover:text-green-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm"
       >
-        previous
+        ← Prev
       </button>
-      {pages.map((pag, indice) => {
-        return (
-          (page===pag)?
-          (<button
-            className={styles.buttonPageOn}
-            onClick={() => handlechangePage(indice)}
-            key={indice}
-          >
-            {pag}
-          </button>):
-          (
-            <button
-            className={styles.buttonPageOff}
-            onClick={() => handlechangePage(indice)}
-            key={indice}
-          >
-            {pag}
-          </button>
-          )
-        );
-      })}
-      <button className={styles.buttonPageOff} onClick={() => handlechangePageNext()}>
-        next
+      {pages.map((p) => (
+        <button
+          key={p}
+          onClick={() => dispatch(setPage(p))}
+          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+            page === p
+              ? "bg-green-500 text-white border border-green-500"
+              : "border border-gray-700 text-gray-400 hover:border-gray-500"
+          }`}
+        >
+          {p + 1}
+        </button>
+      ))}
+      <button
+        onClick={() => dispatch(setPage(Math.min(totalPages - 1, page + 1)))}
+        disabled={page >= totalPages - 1}
+        className="px-3 py-1.5 rounded-lg border border-gray-700 text-gray-300 hover:border-green-500 hover:text-green-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm"
+      >
+        Next →
       </button>
     </div>
   );

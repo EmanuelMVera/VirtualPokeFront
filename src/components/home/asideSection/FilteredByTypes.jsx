@@ -1,22 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filteredByTypes } from "../../../redux/actions";
-// import styles from "../styles/controllers.module.css";
+import { useDispatch } from "react-redux";
+import { useGetTypesQuery } from "../../../redux/api/pokemonApi";
+import { setFilterTypes } from "../../../redux/slices/pokemonSlice";
 
 export default function FilteredByTypes() {
-  const types = useSelector((state) => state.types);
+  const dispatch = useDispatch();
+  const { data: types = [] } = useGetTypesQuery();
 
-  let dispatch = useDispatch();
-  function onSelectChange(e) {
-    dispatch(filteredByTypes(e.target.value));
-  }
-  // className={styles.controllers}
-  // className={styles.controllersType}
   return (
-    <div>
-      <label>Type: </label>
-      <select name="select" onChange={onSelectChange}>
-        <option value="default">all</option>
+    <div className="flex items-center gap-2">
+      <label className="text-gray-400 text-sm font-medium whitespace-nowrap">Type:</label>
+      <select
+        onChange={(e) => dispatch(setFilterTypes(e.target.value))}
+        className="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:border-green-500 cursor-pointer"
+      >
+        <option value="default">All Types</option>
         {types.map((type) => (
           <option key={type.id} value={type.name}>
             {type.name}
@@ -26,30 +24,3 @@ export default function FilteredByTypes() {
     </div>
   );
 }
-
-//Version 2 abierta:
-//   return (
-//     <div className={styles.controllers}>
-//       <label>Tipos: </label>
-//       <div className={styles.controllersType}>
-//         <input
-//           type="radio"
-//           name="selectType"
-//           value="default"
-//           onChange={onSelectChange}
-//         />
-//         <span>all</span>
-//         {types?.map((type) => (
-//           <>
-//             <input
-//               type="radio"
-//               name="selectType"
-//               value={type.name}
-//               onChange={onSelectChange}
-//             />
-//             <span>{type.name}</span>
-//           </>
-//         ))}
-//       </div>
-//     </div>
-//   );

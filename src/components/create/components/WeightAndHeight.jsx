@@ -1,11 +1,10 @@
 import React from "react";
-import style from "../styles/attributeInput.module.css";
 
 export default function WeightAndHeight({ pokemon, handleChange }) {
   return (
-    <div className={style.weightAndHeight}>
+    <div className="flex flex-col gap-3">
       <div>
-        <label>Height: </label>
+        <label className="text-gray-400 text-sm block mb-1">Height (in)</label>
         <input
           type="number"
           name="height"
@@ -13,12 +12,11 @@ export default function WeightAndHeight({ pokemon, handleChange }) {
           min="0"
           max="100"
           onChange={handleChange}
+          className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-green-500 transition-colors"
         />
-        <label>in</label>
       </div>
-
       <div>
-        <label>Weight:</label>
+        <label className="text-gray-400 text-sm block mb-1">Weight (lbs)</label>
         <input
           type="number"
           name="weight"
@@ -26,8 +24,8 @@ export default function WeightAndHeight({ pokemon, handleChange }) {
           min="0"
           max="100"
           onChange={handleChange}
+          className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-green-500 transition-colors"
         />
-        <label>lbs</label>
       </div>
     </div>
   );

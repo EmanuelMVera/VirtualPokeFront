@@ -3,11 +3,9 @@ import FilteredByCreated from "./FilteredByCreated";
 import FilteredByTypes from "./FilteredByTypes";
 import OrderBy from "./OrderBy";
 
-import styles from "../styles/asideSection.module.css";
-
 export default function AsideSection() {
   return (
-    <div className={styles.aside}>
+    <div className="bg-gray-900 border-b border-gray-800 px-4 py-3 flex flex-wrap items-center gap-4">
       <FilteredByCreated />
       <OrderBy />
       <FilteredByTypes />

@@ -11,11 +11,11 @@ export const GET_POKEMON_BY_ID = "Get_Pokemon_By_Id";
 export const RESET_STATE_POKEMON_BY_NAME = "Reset_State_Pokemon_By_Name";
 export const RESET_DETAIL = "Reset_Detail";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export function getPokemon() {
   return async function (dispatch) {
-    let pedido = await axios.get(
-      "https://pipokemonhenry27c.herokuapp.com/pokemons"
-    );
+    let pedido = await axios.get(`${API_URL}/pokemons`);
     dispatch({
       type: GET_POKEMONS,
       payload: pedido.data,
@@ -24,10 +24,7 @@ export function getPokemon() {
 }
 export function postPokemon(pokemon) {
   return async function (dispatch) {
-    await axios.post(
-      "https://pipokemonhenry27c.herokuapp.com/pokemons",
-      pokemon
-    );
+    await axios.post(`${API_URL}/pokemons`, pokemon);
     dispatch({
       type: POST_POKEMON,
       payload: pokemon,
@@ -36,9 +33,7 @@ export function postPokemon(pokemon) {
 }
 export function getPokemonByName(name) {
   return async function (dispatch) {
-    let pedido = await axios.get(
-      "https://pipokemonhenry27c.herokuapp.com/pokemons?name=" + name
-    );
+    let pedido = await axios.get(`${API_URL}/pokemons?name=${name}`);
     dispatch({
       type: GET_POKEMON_BY_NAME,
       payload: pedido.data,
@@ -47,9 +42,7 @@ export function getPokemonByName(name) {
 }
 export function getPokemonById(id) {
   return async function (dispatch) {
-    let pedido = await axios.get(
-      "https://pipokemonhenry27c.herokuapp.com/pokemons/" + id
-    );
+    let pedido = await axios.get(`${API_URL}/pokemons/${id}`);
     dispatch({
       type: GET_POKEMON_BY_ID,
       payload: pedido.data,
@@ -58,9 +51,7 @@ export function getPokemonById(id) {
 }
 export function getTypes() {
   return async function (dispatch) {
-    let pedido = await axios.get(
-      "https://pipokemonhenry27c.herokuapp.com/types"
-    );
+    let pedido = await axios.get(`${API_URL}/types`);
     dispatch({
       type: GET_TYPES,
       payload: pedido.data,

@@ -1,66 +1,21 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filteredByCreated } from "../../../redux/actions";
-// import styles from "../styles/controllers.module.css";
+import { setFilterCreated } from "../../../redux/slices/pokemonSlice";
 
 export default function FilteredByCreated() {
-  let dispatch = useDispatch();
-  function onSelectChange(e) {
-    dispatch(filteredByCreated(e.target.value));
-  }
-  //className={styles.controllers}
+  const dispatch = useDispatch();
+
   return (
-    <div>
-      <label>Source: </label>
-      <select name="select" onChange={onSelectChange}>
-        <option value="default">api/db</option>
-        <option value="api">api</option>
-        <option value="db">db</option>
+    <div className="flex items-center gap-2">
+      <label className="text-gray-400 text-sm font-medium whitespace-nowrap">Source:</label>
+      <select
+        onChange={(e) => dispatch(setFilterCreated(e.target.value))}
+        className="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:border-green-500 cursor-pointer"
+      >
+        <option value="default">All</option>
+        <option value="api">API Only</option>
+        <option value="db">Created</option>
       </select>
     </div>
   );
 }
-
-//Version alternativa abierta:
-// let dispatch = useDispatch();
-// function onSelectChange(e) {
-//   dispatch(filteredByCreated(e.target.value));
-// }
-
-// return (
-//   <div className={styles.controllers}>
-//     <label>Origen: </label>
-
-//     <div className={styles.controllersCreated}>
-//       <div>
-//         <input
-//           type="radio"
-//           name="selectCreated"
-//           value="default"
-//           onChange={onSelectChange}
-//         />
-//         <span>api/db</span>
-//       </div>
-
-//       <div>
-//         <input
-//           type="radio"
-//           name="selectCreated"
-//           value="api"
-//           onChange={onSelectChange}
-//         />
-//         <span>api</span>
-//       </div>
-
-//       <div>
-//         <input
-//           type="radio"
-//           name="selectCreated"
-//           value="db"
-//           onChange={onSelectChange}
-//         />
-//         <span>db</span>
-//       </div>
-//     </div>
-//   </div>
-// );

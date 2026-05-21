@@ -1,56 +1,94 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { useGetPokemonByIdQuery } from "../../redux/api/pokemonApi";
+import { TYPE_COLORS } from "../../constants/typeColors";
 
-import styles from "./styles/detail.module.css";
-import styleButton from "../globalStyles/buttonsStyle.module.css";
 import NavBar from "../globalComponent/navBar";
 import Loader from "../globalComponent/Loader";
-import { resetDetail } from "../../redux/actions";
 
 export default function Detail() {
-  const pokemon = useSelector((state) => state.pokemonDetail);
-  const dispatch = useDispatch();
-  const functionReset = () => dispatch(resetDetail());
+  const { idPokemon } = useParams();
+  const navigate = useNavigate();
+  const { data: pokemon, isLoading, isError } = useGetPokemonByIdQuery(idPokemon);
 
   return (
-    <div className={styles.container}>
-      <NavBar currentPath="detail" functionPath={functionReset} />
-      <div className={styles.sectionDetail}>
-        {Object.keys(pokemon).length ? (
-          <div className={styles.cardBorder}>
-            <div className={styles.card}>
-              <div className={styles.weightAndHeight}>
-                <div> {"Weight: " + pokemon.weight + "lbs"}</div>
-                <div>{"Height: " + pokemon.height + "in"}</div>
+    <div className="min-h-screen bg-gray-950">
+      <NavBar currentPath="detail" functionPath={() => navigate("/home")} />
+
+      <div className="max-w-2xl mx-auto px-4 py-8">
+        {isLoading && <Loader />}
+
+        {isError && (
+          <div className="text-center py-20">
+            <span className="text-5xl mb-4 block">❌</span>
+            <p className="text-gray-400 text-lg">Pokémon not found.</p>
+          </div>
+        )}
+
+        {pokemon && (
+          <div className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
+            <div className="bg-gradient-to-b from-gray-800 to-gray-900 p-8 flex flex-col items-center">
+              <img
+                src={pokemon.image}
+                alt={pokemon.name}
+                className="w-48 h-48 object-contain drop-shadow-2xl"
+              />
+              <h1 className="text-4xl font-black text-white capitalize mt-4">
+                {pokemon.name}
+              </h1>
+              <span className="text-gray-500 text-sm mt-1">
+                #{String(pokemon.id).padStart(3, "0")}
+              </span>
+              <div className="flex gap-2 mt-3 flex-wrap justify-center">
+                {pokemon.types?.map((type, i) => (
+                  <span
+                    key={i}
+                    className="type-badge"
+                    style={{ backgroundColor: TYPE_COLORS[type] || "#666" }}
+                  >
+                    {type}
+                  </span>
+                ))}
               </div>
+            </div>
 
-              <div className={styles.detailCenter}>
-                <div className={styles.name}>{pokemon.name}</div>
-                <img src={pokemon.image} alt="" />
-                <div className={styles.id}>{"ID " + pokemon.id}</div>
-
-                <div className={styles.boxTypes}>
-                  {pokemon.types?.map((type, index) => (
+            <div className="p-6 space-y-4">
+              {[
+                { label: "HP", value: pokemon.hp },
+                { label: "Attack", value: pokemon.strength },
+                { label: "Defense", value: pokemon.defense },
+                { label: "Speed", value: pokemon.speed },
+              ].map(({ label, value }) => (
+                <div key={label}>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-gray-400">{label}</span>
+                    <span className="text-white font-bold">{value}</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
                     <div
-                      key={index}
-                      className={`${styleButton[type]} ${styleButton["typeButtonDetail"]}`}
-                    >
-                      {type}
-                    </div>
-                  ))}
+                      className="stat-bar"
+                      style={{ width: `${Math.min((value / 255) * 100, 100)}%` }}
+                    />
+                  </div>
                 </div>
-              </div>
+              ))}
 
-              <div className={styles.atributtes}>
-                <div>{"Health Points(HP): " + pokemon.hp}</div>
-                <div>{"Attack Power(AP): " + pokemon.strength}</div>
-                <div>{"Defense: " + pokemon.defense}</div>
-                <div>{"Speed: " + pokemon.speed}</div>
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="bg-gray-800 rounded-xl p-4 text-center">
+                  <div className="text-gray-400 text-xs uppercase tracking-wider mb-1">
+                    Weight
+                  </div>
+                  <div className="text-white font-bold text-lg">{pokemon.weight} lbs</div>
+                </div>
+                <div className="bg-gray-800 rounded-xl p-4 text-center">
+                  <div className="text-gray-400 text-xs uppercase tracking-wider mb-1">
+                    Height
+                  </div>
+                  <div className="text-white font-bold text-lg">{pokemon.height} in</div>
+                </div>
               </div>
             </div>
           </div>
-        ) : (
-          <Loader />
         )}
       </div>
     </div>

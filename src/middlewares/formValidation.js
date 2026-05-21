@@ -1,38 +1,31 @@
-const formValidatione = (pokemon, existingPokemon) => {
-  let err = {};
-  //validar nombre
-  let ExpRegSoloLetras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
+const formValidation = (pokemon, existingPokemon) => {
+  const err = {};
+  const onlyLetters = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s-]+$/;
 
-  if (pokemon.name === existingPokemon.name) {
+  if (pokemon.name === existingPokemon?.name) {
     err.name = "Pokemon is already in the database";
-  } else if (!ExpRegSoloLetras.test(pokemon.name ?? "")) {
-    err.name = "Invalid name.";
-  } else {
+  } else if (!onlyLetters.test(pokemon.name ?? "")) {
+    err.name = "Invalid name. Only letters allowed.";
   }
 
-  // Validacion para formato de imagenes
-  let ExpRegURL = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp))/i;
-  if (!ExpRegURL.test(pokemon.image) && pokemon.image.length !== 0) {
-    err.image = "invalid url.";
+  const urlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp))/i;
+  if (pokemon.image.length !== 0 && !urlRegex.test(pokemon.image)) {
+    err.image = "Invalid image URL.";
   }
 
-  // validacion para numeros
-  let ExpRegSoloNumeros = /^(0?[0-9]?[0-9]|1[0][0])$/;
-  //   [pokemon.hp, pokemon.strength, pokemon.speed,pokemon.height,pokemon.weight].every(ExpRegSoloNumeros.test) || (err.attribute = "Invalid number")
+  const onlyNumbers = /^(0?[0-9]?[0-9]|1[0][0])$/;
   if (
-    !ExpRegSoloNumeros.test(pokemon.hp) ||
-    !ExpRegSoloNumeros.test(pokemon.strength) ||
-    !ExpRegSoloNumeros.test(pokemon.defense) ||
-    !ExpRegSoloNumeros.test(pokemon.speed) ||
-    !ExpRegSoloNumeros.test(pokemon.height) ||
-    !ExpRegSoloNumeros.test(pokemon.weight)
+    !onlyNumbers.test(pokemon.hp) ||
+    !onlyNumbers.test(pokemon.strength) ||
+    !onlyNumbers.test(pokemon.defense) ||
+    !onlyNumbers.test(pokemon.speed) ||
+    !onlyNumbers.test(pokemon.height) ||
+    !onlyNumbers.test(pokemon.weight)
   ) {
-    err.attribute = "invalid number";
+    err.attribute = "Invalid number. Values must be 0-100.";
   }
 
   return err;
 };
 
-module.exports = {
-  formValidatione,
-};
+export { formValidation };

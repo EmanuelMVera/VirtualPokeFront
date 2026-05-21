@@ -1,77 +1,32 @@
 import React from "react";
-import style from "../styles/attributeInput.module.css";
+
+const STATS = [
+  { label: "Health Points (HP)", name: "hp" },
+  { label: "Attack Power (AP)", name: "strength" },
+  { label: "Defense", name: "defense" },
+  { label: "Speed", name: "speed" },
+];
 
 export default function Stats({ pokemon, handleChange }) {
   return (
-    <div className={style.stats}>
-      <div className={style.hp}>
-        <label>Health Points(HP): </label>
-        <input
-          type="range"
-          name="hp"
-          value={pokemon.hp}
-          min="0"
-          max="100"
-          onChange={handleChange}
-        />
-        <label>{pokemon.hp}</label>
-      </div>
-
-      <div className={style.ap}>
-        <label>Attack Power(AP): </label>
-        <input
-          type="range"
-          name="strength"
-          value={pokemon.strength}
-          min="0"
-          max="100"
-          onChange={handleChange}
-        />
-        <label>{pokemon.strength}</label>
-      </div>
-
-      <div className={style.defense}>
-        <label>Defense: </label>
-        <input
-          type="range"
-          name="defense"
-          value={pokemon.defense}
-          min="0"
-          max="100"
-          onChange={handleChange}
-        />
-        <label>{pokemon.defense}</label>
-      </div>
-
-      <div className={style.speed}>
-        <label>Speed: </label>
-        <input
-          type="range"
-          name="speed"
-          value={pokemon.speed}
-          min="0"
-          max="100"
-          onChange={handleChange}
-        />
-        <label>{pokemon.speed}</label>
-      </div>
+    <div className="flex flex-col gap-3">
+      {STATS.map(({ label, name }) => (
+        <div key={name}>
+          <div className="flex justify-between text-sm mb-1">
+            <label className="text-gray-400">{label}</label>
+            <span className="text-green-400 font-bold">{pokemon[name]}</span>
+          </div>
+          <input
+            type="range"
+            name={name}
+            value={pokemon[name]}
+            min="0"
+            max="100"
+            onChange={handleChange}
+            className="w-full accent-green-500"
+          />
+        </div>
+      ))}
     </div>
   );
 }
-
-//Por ahora no funciona, revisar mas adelante
-// import InputBox from "../components/inputBox.jsx";
-// let pokemonItemKeys = Object.keys(pokemon);
-
-// {pokemonItemKeys?.map((key) =>
-//   key !== "name" || key !== "image" || key !== "typesId" ? (
-//     <InputBox
-//       object={pokemon}
-//       key={key}
-//       changeFunction={handleChange}
-//       error=""
-//     />
-//   ) : (
-//     <div></div>
-//   )
-// )}

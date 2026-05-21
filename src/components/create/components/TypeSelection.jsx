@@ -1,46 +1,47 @@
-import { useSelector } from "react-redux";
 import React from "react";
-import style from "../styles/typeSelection.module.css";
-import styleButton from "../../globalStyles/buttonsStyle.module.css";
+import { useGetTypesQuery } from "../../../redux/api/pokemonApi";
+import { TYPE_COLORS } from "../../../constants/typeColors";
 
 export default function TypeSelection({ pokemon, setPokemon }) {
-  const types = useSelector((state) => state.types);
+  const { data: types = [] } = useGetTypesQuery();
 
-  const handleOnChange = (id) => {
-    !pokemon.typesId.includes(id) && pokemon.typesId.length < 2
-      ? setPokemon({ ...pokemon, typesId: [...pokemon.typesId, id] })
-      : setPokemon({
-          ...pokemon,
-          typesId: pokemon.typesId.filter((i) => i !== id),
-        });
+  const handleToggle = (id) => {
+    if (pokemon.typesId.includes(id)) {
+      setPokemon({ ...pokemon, typesId: pokemon.typesId.filter((i) => i !== id) });
+    } else if (pokemon.typesId.length < 2) {
+      setPokemon({ ...pokemon, typesId: [...pokemon.typesId, id] });
+    }
   };
 
   return (
-    <div className={style.typeSelection}>
-      {types?.map(({ id, name }) =>
-        pokemon.typesId.includes(id) ? (
-          <input
-            className={`${styleButton[name]} ${styleButton.typeButtonActive}`}
-            key={id}
-            type="button"
-            id={id}
-            name={name}
-            value={name}
-            onClick={() => handleOnChange(id)}
-          />
-        ) : (
-          <input
-            className={`${styleButton[name]} ${styleButton.typeButtonFalse}`}
-            key={id}
-            type="button"
-            id={id}
-            name={name}
-            value={name}
-            onClick={() => handleOnChange(id)}
-          />
-        )
-      )}
-      <div className={styleButton.dot}></div>
+    <div className="mt-4">
+      <p className="text-gray-400 text-sm mb-3">
+        Select up to 2 types{" "}
+        <span className="text-gray-600">({pokemon.typesId.length}/2 selected)</span>
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {types.map(({ id, name }) => {
+          const isSelected = pokemon.typesId.includes(id);
+          const color = TYPE_COLORS[name] || "#666";
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => handleToggle(id)}
+              className="type-badge transition-all duration-150"
+              style={{
+                backgroundColor: isSelected ? color : "transparent",
+                border: `2px solid ${color}`,
+                color: isSelected ? "white" : color,
+                opacity: !isSelected && pokemon.typesId.length >= 2 ? 0.4 : 1,
+                cursor: !isSelected && pokemon.typesId.length >= 2 ? "not-allowed" : "pointer",
+              }}
+            >
+              {name}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,24 +1,14 @@
-import React, { useEffect } from "react";
-import styles from "./styles/home.module.css";
-
+import React from "react";
 import AsideSection from "./asideSection/AsideSection";
 import ViewSection from "./viewSection/ViewSection";
 import NavBar from "../globalComponent/navBar";
-import { useDispatch } from "react-redux";
-import { getPokemon, getTypes } from "../../redux/actions";
 
 export default function Home() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPokemon());
-    dispatch(getTypes());
-  }, [dispatch]);
-
   return (
-    <div className={styles.home}>
+    <div className="min-h-screen bg-gray-950">
       <NavBar currentPath="home" />
       <AsideSection />
-      <ViewSection className={styles.viewSection} />
+      <ViewSection />
     </div>
   );
 }

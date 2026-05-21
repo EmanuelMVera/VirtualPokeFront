@@ -1,20 +1,15 @@
-import { React } from "react";
-import PokemonsAllCards from "./PokemonsAllCards";
-import styles from "../styles/viewSection.module.css";
+import React from "react";
 import { useSelector } from "react-redux";
+import PokemonsAllCards from "./PokemonsAllCards";
 import CardPokemon from "./CardPokemon";
 
 export default function ViewSection() {
-  let pokemonByName = useSelector((state) => state.pokemonByName);
+  const pokemonByName = useSelector((state) => state.pokemon.pokemonByName);
+
   return (
-    <div className={styles.viewSection}>
-      {Object.keys(pokemonByName).length > 0 ? (
-        <CardPokemon />
-      ) : (
-        <>
-          <PokemonsAllCards />
-        </>
-      )}
+    <div className="flex-1">
+      {pokemonByName !== null && <CardPokemon />}
+      <PokemonsAllCards />
     </div>
   );
 }
